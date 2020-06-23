@@ -54,7 +54,7 @@ func (m *Message) Bytes() (ret []byte, err error) {
 	ret = append(ret, mtiBytes...)
 
 	// generate bitmap and fields:
-	fields := parseFields(m.Data)
+	fields := ParseFields(m.Data)
 
 	byteNum := 8
 	if m.SecondBitmap {
@@ -120,7 +120,7 @@ func (m *Message) encodeMti() ([]byte, error) {
 	}
 }
 
-func parseFields(msg interface{}) map[int]*fieldInfo {
+func ParseFields(msg interface{}) map[int]*fieldInfo {
 	fields := make(map[int]*fieldInfo)
 
 	v := reflect.Indirect(reflect.ValueOf(msg))
@@ -208,7 +208,7 @@ func (m *Message) Load(raw []byte) (err error) {
 		start = 2
 	}
 
-	fields := parseFields(m.Data)
+	fields := ParseFields(m.Data)
 
 	byteNum := 8
 	if raw[start]&0x80 == 0x80 {
