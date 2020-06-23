@@ -23,7 +23,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/ideazxy/iso8583"
+	"github.com/codigopher/iso8583"
 )
 
 type Data struct {
